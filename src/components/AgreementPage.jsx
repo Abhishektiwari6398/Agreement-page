@@ -18,7 +18,7 @@ const uploadToCloudinary = async (file) => {
 
 const AgreementSection = ({ title, children }) => (
     <div className="mb-8">
-        <h2 className="text-xl font-semibold mb-2 border-b pb-1 border-gray-300">
+        <h2 className="text-xl font-semibold mb-2 border-b pb-1 border-gray-300 text-black">
             {title}
         </h2>
         <div className="text-white space-y-2 text-justify">{children}</div>
