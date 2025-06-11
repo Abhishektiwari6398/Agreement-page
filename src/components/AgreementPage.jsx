@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { generatePDFSafely } from '../pages/api/download-pdf';
 
 const uploadToCloudinary = async (file) => {
     try {
@@ -128,6 +129,18 @@ export default function AgreementPage() {
                     date: partnerData.date
                 }]);
                 setIsModalOpen(false);
+                   setTimeout(async () => {
+                    const pdfGenerated = await generatePDFSafely({
+                        name: partnerData.name,
+                        designation: partnerData.designation,
+                        signatureURL: partnerData.signatureURL,
+                        date: partnerData.date
+                    });
+
+                    if (pdfGenerated) {
+                        console.log('PDF downloaded successfully');
+                    }
+                }, 500);
             }
         } catch (error) {
             console.error("Submission failed:", error.response?.data || error);
